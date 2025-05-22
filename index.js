@@ -3,7 +3,8 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
-
+import jwt from 'jsonwebtoken';
+import userRouter from './routes/userRoutes.js';
 
 dotenv.config()
 
@@ -24,7 +25,24 @@ app.use(cors())
 
 
 app.use(bodyParser.json())
+app.use(
+  (req,res,next)=>{
 
+  const token =  (req.header("Authorization"))?.replace("Bearer ", "")
+ 
+
+  if(token != null){
+    jwt.verify(token, process.env.SECRET, (error, decoded)=>{
+      if(!error){
+        req.user = decoded
+      }
+    })
+  }
+  next()
+  }
+)
+
+app.use("/api/users",userRouter)
 
 app.listen(
   5000,
