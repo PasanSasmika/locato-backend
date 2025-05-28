@@ -48,3 +48,10 @@ export async function serviceRequest(req,res){
     }
 
 }
+
+
+export function getserviceRequest(req,res){
+    ServiceReq.find({}).then((servicereq)=>{
+        res.json(servicereq)
+    })
+}
