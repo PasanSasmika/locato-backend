@@ -1,5 +1,5 @@
 import express from 'express';
-import { serviceRequest } from '../controllers/serviceReqCOntroller.js';
+import { serviceRequest } from '../controllers/serviceReq.js';
 
 const serviceReqRouter = express.Router();
 
