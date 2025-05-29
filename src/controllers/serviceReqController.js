@@ -1,5 +1,5 @@
-import cloudinary from "../lib/cloudinary.js";
-import ServiceReq from "../models/serviceReqModel.js"
+import cloudinary from "../lib/cloudinary.js"
+import ServiceReq from "../models/serviceReqModel.js";
 
 
 

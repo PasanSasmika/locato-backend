@@ -1,6 +1,5 @@
-import User from "../models/usersModel.js";
 import bcrypt from "bcrypt"
-
+import User from "../models/usersModel.js";
 
 
 export function serviceOwnerRegistration(req, res) {
