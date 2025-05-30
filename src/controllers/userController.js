@@ -73,6 +73,7 @@ export function createCustomer(req, res) {
                         message: "Registration successful",
                         token: token,
                         user: {
+                             _id: savedUser._id,
                             firstName: savedUser.firstName,
                             lastName: savedUser.lastName,
                             email: savedUser.email,
@@ -121,6 +122,7 @@ export function loginUser(req,res){
                         message: "Logged in successful",
                         token: token,
                         user: {
+                             _id: savedUser._id,
                             firstName : user.firstName,
                             lastName : user.lastName,
                             email: user.email,
