@@ -6,6 +6,7 @@ import cors from 'cors';
 import jwt from 'jsonwebtoken';
 import userRouter from './routes/userRoutes.js';
 import serviceReqRouter from './routes/serviceReqRoute.js';
+import job from './lib/corn.js';
 
 dotenv.config()
 
@@ -23,6 +24,7 @@ connection.once("open",()=>{
 })
 
 app.use(cors())
+job.start();
 
 
 app.use(bodyParser.json())
