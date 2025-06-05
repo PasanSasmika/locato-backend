@@ -7,6 +7,7 @@ import jwt from 'jsonwebtoken';
 import userRouter from './routes/userRoutes.js';
 import serviceReqRouter from './routes/serviceReqRoute.js';
 import job from './lib/corn.js';
+import serviceCatRouter from './routes/serviceCatRoute.js';
 
 dotenv.config()
 
@@ -47,6 +48,8 @@ app.use(
 
 app.use("/api/users",userRouter)
 app.use("/api/service",serviceReqRouter)
+app.use("/api/serviceCat",serviceCatRouter)
+
 app.listen(
   5000,
   ()=>{
