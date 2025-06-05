@@ -26,3 +26,10 @@ export  function createServiceCategory(req,res){
     })
 
 }
+
+
+export function getServiceCategories(req,res){
+    ServiceCategories.find({}).then((serviceCat)=>{
+        res.json(serviceCat)
+    })
+}
