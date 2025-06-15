@@ -1,11 +1,11 @@
 import ServiceCategories from "../models/ServiceCategories.js"
-import { isAdmin } from "../userType.js"
+import { isAdmin } from "../../users/userType.js"
 
 export  function createServiceCategory(req,res){
 
     if(!isAdmin(req)){
         res.json({
-            message: "Please login as an admin to add blogs.!" 
+            message: "Please login as an admin to add Categories.!" 
         })
         return
     }
