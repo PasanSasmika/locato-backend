@@ -13,16 +13,8 @@ export async function serviceRequest(req,res){
             return res.status(400).json({ message: "Please provide all fields"});
         }
 
-         // Check if Images is an array (even if single image)
-        const imagesArray = Array.isArray(Images) ? Images : [Images];
-
-        // Upload all images to Cloudinary
-        const uploadPromises = imagesArray.map(async (image) => {
-            const uploadResponse = await cloudinary.uploader.upload(image);
-            return uploadResponse.secure_url;
-        });
-
-        const uploadedImageUrls = await Promise.all(uploadPromises);
+          const uploadResponse = await cloudinary.uploader.upload(Images);
+          const imageUrl = uploadResponse.secure_url;
 
 
         //save to the mongodb
@@ -34,7 +26,7 @@ export async function serviceRequest(req,res){
             serviceType, 
             mobileNo,
             nic, 
-            Images:uploadedImageUrls,
+            Images:imageUrl,
             address
         })
 
@@ -55,3 +47,4 @@ export function getserviceRequest(req,res){
         res.json(servicereq)
     })
 }
+

@@ -14,19 +14,27 @@ dotenv.config()
 
 const app = express();
 
-const mongoUrl = process.env.MONGODB_URI
+const mongoUrl = process.env.MONGODB_URI;
+if (!mongoUrl) {
+  console.error("Missing MONGODB_URI in .env");
+  process.exit(1);
+}
 
-mongoose.connect(mongoUrl,{})
-
-const connection = mongoose.connection;
-
-connection.once("open",()=>{
-  console.log("Database connected");
-})
+const connectDB = async () => {
+  try {
+    await mongoose.connect(mongoUrl, {});
+    console.log("Database connected");
+  } catch (error) {
+    console.error("MongoDB connection error:", error);
+    process.exit(1);
+  }
+};
+connectDB();
 
 app.use(cors())
 job.start();
-
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ limit: '10mb', extended: true }))
 
 app.use(bodyParser.json())
 app.use(

@@ -37,11 +37,10 @@ const ServiceRequestSchema = mongoose.Schema({
         type : String,
     },
 
-    Images : [
-        {
-            type : String
-        }
-    ],
+    Images :{
+        type : String,
+        required : true
+    },
 
       address : {
         type : String,
