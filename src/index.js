@@ -6,7 +6,7 @@ import cors from 'cors';
 import jwt from 'jsonwebtoken';
 import userRouter from './routes/userRoutes.js';
 import serviceReqRouter from './routes/serviceReqRoute.js';
-import job from './lib/corn.js';
+// import job from './lib/corn.js';
 import serviceCatRouter from './routes/serviceCatRoute.js';
 
 dotenv.config()
@@ -32,7 +32,7 @@ const connectDB = async () => {
 connectDB();
 
 app.use(cors())
-job.start();
+// job.start();
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: true }))
 
