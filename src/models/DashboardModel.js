@@ -1,6 +1,12 @@
 import mongoose from "mongoose";
 
-const DashboardSchema = mongoose.Schema({
+const DashboardSchema = new mongoose.Schema({
+    // Add a reference to the user who created this dashboard entry
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User', // Assumes you have a 'User' model
+        required: true,
+    },
     name: {
         type: String,
         required: true,
@@ -8,126 +14,62 @@ const DashboardSchema = mongoose.Schema({
     category: {
         type: String,
         required: true,
+        // Expanded enum to match all categories from your frontend
         enum: [
-            'Tutoring', 'General Service', 'Retail', 'Product Sales', 'Restaurant',
-            'Fashion', 'General Business', 'Hospital', 'Doctor', 'Diagnostic Center',
-            'Service Center', 'Salon', 'Therapy', 'Gym', 'Event Service'
+            'Tuition', 'Home Repair', 'Supermarkets', 'Electronics', 'Hardware',
+            'Restaurant', 'Clothing', 'Pharmacy', 'Hospital', 'Private', 'Labs',
+            'Ayurveda', 'Saloon', 'Spa', 'Fitness Center', 'Bridle makeup/ Beauty care'
         ],
     },
-    subCategories: [{
-        type: String,
-    }],
-    services: [{
-        type: String,
-    }],
-    type: {
-        type: String,
-        enum: ['Government', 'Private', 'Online', 'In-Person', 'Hybrid', 'Store', 'Service', null],
-    },
-    subjectStream: {
+    tutorName: { // Added from frontend form
         type: String,
     },
-    subject: {
-        type: String,
-    },
-    genderServed: {
-        type: String,
-        enum: ['Male', 'Female', 'Unisex', null],
-    },
-    experience: {
-        type: String,
-    },
-    certificateTherapist: {
-        type: Boolean,
-    },
-    serviceDuration: {
-        type: String,
-    },
-    trainersAvailable: [{
-        type: String,
-    }],
+    subCategories: [String],
+    services: [String],
+    type: String,
+    subjectStream: String,
+    subject: String,
+    genderServed: String,
+    experience: String,
+    certificateTherapist: Boolean,
+    serviceDuration: String,
+    trainersAvailable: [String],
     membershipPlans: [{
         name: String,
         price: Number,
         duration: String,
     }],
-    facilities: [{
-        type: String,
-    }],
-    ladiesTime: {
-        type: String,
-    },
+    facilities: [String],
+    ladiesTime: String,
     packages: [{
         name: String,
         description: String,
         price: Number,
     }],
-    advanceReceived: {
-        type: Boolean,
-    },
-    availableForWedding: {
-        type: Boolean,
-    },
-    samples: [{
-        type: String,
-    }],
-    availabilityDate: {
-        type: [String],
-    },
-    cuisineTypes: [{
-        type: String,
-    }],
-    menuHighlights: [{
-        type: String,
-    }],
-    style: {
-        type: String,
-    },
-    sizes: [{
-        type: String,
-    }],
-    brandList: [{
-        type: String,
-    }],
-    productSold: [{
-        type: String,
-    }],
-    warrantyInfo: {
-        type: String,
-    },
-    stockStatus: {
-        type: String,
-        enum: ['In Stock', 'Out of Stock', 'Limited', null],
-    },
-    department: {
-        type: String,
-    },
-    emergency24x7: {
-        type: Boolean,
-    },
-    ambulance: {
-        type: Boolean,
-    },
-    testOffered: [{
-        type: String,
-    }],
-    sampleCollection: {
-        type: String,
-    },
-    homeTreat: {
-        type: Boolean,
-    },
+    advanceReceived: Boolean,
+    availableForWedding: Boolean,
+    samples: [String],
+    availabilityDate: [String],
+    cuisineTypes: [String],
+    menuHighlights: [String],
+    style: String,
+    sizes: [String],
+    brandList: [String],
+    productSold: [String],
+    warrantyInfo: String,
+    stockStatus: String,
+    department: String,
+    emergency24x7: Boolean,
+    ambulance: Boolean,
+    testOffered: [String],
+    sampleCollection: String,
+    homeTreat: Boolean,
     priceRange: {
         min: Number,
         max: Number,
     },
-    approximateFee: {
-        type: Number,
-    },
-    pricingMethod: {
-        type: String,
-        enum: ['Fixed', 'Hourly', 'Per Session', 'Subscription', null],
-    },
+    approximateFee: Number,
+    pricingMethod: String,
     priceList: [{
         service: String,
         price: Number,
@@ -138,60 +80,24 @@ const DashboardSchema = mongoose.Schema({
     }],
     offers: [{
         description: String,
-        validUntil: Date,
+        validUntil: String, // Changed to String to simplify from frontend
     }],
-    membershipDiscount: {
-        type: Boolean,
-    },
-    workingDays: [{
-        type: String,
-    }],
-    openHours: {
-        type: String,
-    },
-    availability: {
-        type: String,
-    },
-    visitingHours: {
-        type: String,
-    },
-    appointmentNeeded: {
-        type: Boolean,
-    },
-    walkInAllowed: {
-        type: Boolean,
-    },
-    bookingMethod: {
-        type: String,
-        enum: ['Online', 'Phone', 'In-Person', 'App', null],
-    },
-    serviceMode: {
-        type: String,
-        enum: ['Online', 'In-Person', 'Hybrid', null],
-    },
-    open247: {
-        type: Boolean,
-    },
-    deliveryAvailable: {
-        type: Boolean,
-    },
-    deliveryPortals: [{
-        type: String,
-    }],
-    deliveryInfo: {
-        type: String,
-    },
-    dineInTakeaway: {
-        type: String,
-        enum: ['Dine-In', 'Takeaway', 'Both', null],
-    },
-    paymentMethods: [{
-        type: String,
-        enum: ['Cash', 'Card', 'UPI', 'Online', 'Other'],
-    }],
-    parkingAvailable: {
-        type: Boolean,
-    },
+    membershipDiscount: Boolean,
+    workingDays: [String],
+    openHours: String,
+    availability: String,
+    visitingHours: String,
+    appointmentNeeded: Boolean,
+    walkInAllowed: Boolean,
+    bookingMethod: String,
+    serviceMode: String,
+    open247: Boolean,
+    deliveryAvailable: Boolean,
+    deliveryPortals: [String],
+    deliveryInfo: String,
+    dineInTakeaway: String,
+    paymentMethods: [String],
+    parkingAvailable: Boolean,
     contactInfo: {
         phone: [String],
         email: String,
@@ -201,38 +107,29 @@ const DashboardSchema = mongoose.Schema({
             url: String,
         }],
     },
-    // location: {
-    //     address: String,
-    //     city: String,
-    //     state: String,
-    //     country: String,
-    //     coordinates: {
-    //         lat: Number,
-    //         lng: Number,
-    //     },
-    // },
-    areasCovered: [{
-        type: String,
-    }],
-    languages: [{
-        type: String,
-    }],
+    // Location schema is now active
+    location: {
+        address: String,
+        city: String,
+        state: String,
+        country: String,
+        coordinates: {
+            lat: Number,
+            lng: Number,
+        },
+    },
+    areasCovered: [String],
+    languages: [String],
     photos: [{
         url: String,
         caption: String,
     }],
-    description: {
-        type: String,
-    },
-    rating: {
-        average: Number,
-        count: Number,
-    },
+    description: String,
+    rating: Number, // Simplified to a single number as per frontend state
     reviews: [{
-        user: String,
+        reviewer: String,
         comment: String,
         rating: Number,
-        date: Date,
     }],
     nextUpdateDate: {
         type: Date,
