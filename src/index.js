@@ -8,6 +8,7 @@ import userRouter from './routes/userRoutes.js';
 import serviceReqRouter from './routes/serviceReqRoute.js';
 // import job from './lib/corn.js';
 import serviceCatRouter from './routes/serviceCatRoute.js';
+import tuitionRouter from './routes/DashboardRoute/tuitionRoute.js';
 
 dotenv.config()
 
@@ -57,6 +58,7 @@ app.use(
 app.use("/api/users",userRouter)
 app.use("/api/service",serviceReqRouter)
 app.use("/api/serviceCat",serviceCatRouter)
+app.use("/api/dashboard",tuitionRouter)
 
 app.listen(
   5000,
