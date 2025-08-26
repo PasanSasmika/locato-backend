@@ -9,6 +9,7 @@ import serviceReqRouter from './routes/serviceReqRoute.js';
 // import job from './lib/corn.js';
 import serviceCatRouter from './routes/serviceCatRoute.js';
 import tuitionRouter from './routes/DashboardRoute/tuitionRoute.js';
+import hospitalRouter from './routes/DashboardRoute/hospitalRoute.js';
 
 dotenv.config()
 
@@ -59,7 +60,7 @@ app.use("/api/users",userRouter)
 app.use("/api/service",serviceReqRouter)
 app.use("/api/serviceCat",serviceCatRouter)
 app.use("/api/dashboard",tuitionRouter)
-
+app.use("/api/hospitals", hospitalRouter); 
 app.listen(
   5000,
   ()=>{
