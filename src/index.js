@@ -11,6 +11,7 @@ import serviceCatRouter from './routes/serviceCatRoute.js';
 import tuitionRouter from './routes/DashboardRoute/tuitionRoute.js';
 import hospitalRouter from './routes/DashboardRoute/hospitalRoute.js';
 import labRouter from './routes/DashboardRoute/labRoute.js';
+import pharmacyRouter from './routes/DashboardRoute/pharmacyRoute.js';
 
 dotenv.config()
 
@@ -63,6 +64,7 @@ app.use("/api/serviceCat",serviceCatRouter)
 app.use("/api/dashboard",tuitionRouter)
 app.use("/api/hospitals", hospitalRouter); 
 app.use("/api/labs", labRouter); 
+app.use("/api/pharmacies", pharmacyRouter); 
 
 
 
