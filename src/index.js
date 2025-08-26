@@ -12,6 +12,7 @@ import tuitionRouter from './routes/DashboardRoute/tuitionRoute.js';
 import hospitalRouter from './routes/DashboardRoute/hospitalRoute.js';
 import labRouter from './routes/DashboardRoute/labRoute.js';
 import pharmacyRouter from './routes/DashboardRoute/pharmacyRoute.js';
+import doctorRouter from './routes/DashboardRoute/doctorRoute.js';
 
 dotenv.config()
 
@@ -65,7 +66,7 @@ app.use("/api/dashboard",tuitionRouter)
 app.use("/api/hospitals", hospitalRouter); 
 app.use("/api/labs", labRouter); 
 app.use("/api/pharmacies", pharmacyRouter); 
-
+app.use("/api/doctors", doctorRouter); 
 
 
 app.listen(
