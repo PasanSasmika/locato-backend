@@ -15,6 +15,7 @@ import pharmacyRouter from './routes/DashboardRoute/pharmacyRoute.js';
 import doctorRouter from './routes/DashboardRoute/doctorRoute.js';
 import ayurvedaRouter from './routes/DashboardRoute/ayruwedhaRoute.js';
 import saloonRouter from './routes/DashboardRoute/saloonRoute.js';
+import spaRouter from './routes/DashboardRoute/spaRoutes.js';
 
 dotenv.config()
 
@@ -71,7 +72,7 @@ app.use("/api/pharmacies", pharmacyRouter);
 app.use("/api/doctors", doctorRouter); 
 app.use("/api/ayurveda", ayurvedaRouter); 
 app.use("/api/saloons", saloonRouter);
-
+app.use("/api/spas", spaRouter);
 
 app.listen(
   5000,
