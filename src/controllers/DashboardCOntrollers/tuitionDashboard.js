@@ -2,9 +2,26 @@ import TuitionModel from "../../models/DashboardModel/TuitionModel.js";
 
 export async function createTuition(req, res) {
   try {
-    const tuitionData = req.body;
+    const { location, ...restOfData } = req.body;
 
-    const tuition = new TuitionModel(tuitionData);
+    // Prepare the location data for the new schema
+    const newTuitionData = {
+      ...restOfData,
+      location: {
+        address: location.address,
+      },
+    };
+
+    // Only add the point if coordinates were provided
+    if (location.coordinates && location.coordinates.lat && location.coordinates.lng) {
+      newTuitionData.location.point = {
+        type: 'Point',
+        // GeoJSON format is [longitude, latitude]
+        coordinates: [location.coordinates.lng, location.coordinates.lat],
+      };
+    }
+
+    const tuition = new TuitionModel(newTuitionData);
     await tuition.save();
 
     res.status(201).json({
