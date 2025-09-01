@@ -31,11 +31,8 @@ const TuitionSchema = new mongoose.Schema(
     feeRange: { type: String, required: true },
     languageMedium: { type: String, required: true },
     location: {
-      address: {
-        type: String,
-        required: true,
-      },
-      point: PointSchema, // Using the GeoJSON sub-schema
+      type: String,
+      required: [true, "Location is required."],
     },
     contactInfo: {
       phone: { type: String, required: true },
