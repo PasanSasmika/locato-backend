@@ -1,61 +1,82 @@
 import mongoose from "mongoose";
 
-// GeoJSON Point Schema for storing coordinates
-const PointSchema = new mongoose.Schema({
-  type: {
-    type: String,
-    enum: ['Point'],
-    default: 'Point',
-  },
-  coordinates: {
-    type: [Number], // [longitude, latitude]
-    index: '2dsphere', // Important for geospatial queries (e.g., "find nearby")
-  },
-});
-
 const TuitionSchema = new mongoose.Schema(
   {
     tutorName: {
       type: String,
+      required: [true, "Tutor name is required."],
+      trim: true,
+    },
+    institute: {
+      name: { type: String, trim: true },
+      operationalDatesTimes: { type: String, trim: true }, // e.g., "Mon-Fri 9AM-5PM, Closed on holidays"
+    },
+    classType: {
+      type: String,
+      required: true,
+      enum: ["Group", "Individual", "Hybrid"],
+      default: "Group",
+    },
+    subjectStream: [{ type: String, trim: true }], // e.g., ['Science', 'Commerce', 'Arts']
+    subject: [{ type: String, trim: true }], // e.g., ['Mathematics', 'Physics']
+    teachingMode: {
+      type: String,
+      required: true,
+      enum: ["Online", "In-Person", "Hybrid"],
+      default: "In-Person",
+    },
+    feeRange: {
+      type: String, // e.g., "LKR 1000-2000 per session"
+      trim: true,
+    },
+    languageMedium: [{ type: String, trim: true }], // e.g., ['English', 'Sinhala']
+    location: {
+      type: String,
       required: true,
       trim: true,
     },
-    instituteName: {
+    contactInfo: {
+      phone: { type: String, required: true, trim: true },
+      email: { type: String, trim: true },
+      socialMedia: { type: String, trim: true },
+    },
+    daysTimes: {
+      type: String, // e.g., "Mon, Wed, Fri 4PM-6PM"
+      trim: true,
+    },
+    images: [{ type: String }], // Base64 or URLs for tutor/class photos
+    description: {
       type: String,
       trim: true,
     },
-    classType: { type: String, required: true },
-    subjectStream: { type: String, required: true },
-    subject: { type: String, required: true },
-    teachingMode: { type: String, required: true },
-    feeRange: { type: String, required: true },
-    languageMedium: { type: String, required: true },
-    location: {
-      type: String,
-      required: [true, "Location is required."],
+    nextUpdateDate: {
+      type: Date,
     },
-    contactInfo: {
-      phone: { type: String, required: true },
-      email: { type: String },
+    reviews: {
+      type: String, // e.g., "4.5/5 based on 20 reviews"
+      trim: true,
     },
-    daysTimes: [
-      {
-        day: { type: String },
-        time: { type: String },
-      },
-    ],
-    images: [{ type: String }],
-    description: { type: String, trim: true },
-    nextUpdateDate: { type: Date },
-    rating: { type: Number, min: 0, max: 5, default: 0 },
-    reviews: [
-      {
-        reviewerName: { type: String },
-        comment: { type: String },
-        rating: { type: Number, min: 0, max: 5 },
-        date: { type: Date, default: Date.now },
-      },
-    ],
+    classDuration: {
+      type: String, // e.g., "1 hour"
+      trim: true,
+    },
+    tutorQualifications: {
+      type: String, // e.g., "BSc in Mathematics, 5 years teaching experience"
+      trim: true,
+    },
+    enrollmentProcess: {
+      type: String, // e.g., "Contact via phone or online form"
+      trim: true,
+    },
+    maxStudents: {
+      type: Number,
+      min: 1,
+      default: 1,
+    },
+    availabilityStatus: {
+      type: String, // e.g., "Open for Enrollment", "Waitlist"
+      trim: true,
+    },
   },
   { timestamps: true }
 );

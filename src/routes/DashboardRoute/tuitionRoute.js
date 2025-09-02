@@ -1,13 +1,9 @@
 import express from 'express';
-import { createTuition, getTuitions } from '../../controllers/DashboardCOntrollers/tuitionDashboard.js';
-
-
+import { createTuition, getTuition } from '../../controllers/DashboardControllers/TuitionDashboard.js';
 
 const tuitionRouter = express.Router();
 
-tuitionRouter.post("/", createTuition)
-tuitionRouter.get("/",getTuitions); 
-
-
+tuitionRouter.post("/", createTuition);
+tuitionRouter.get("/", getTuition);
 
 export default tuitionRouter;

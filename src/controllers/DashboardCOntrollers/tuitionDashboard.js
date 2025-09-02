@@ -1,27 +1,10 @@
 import TuitionModel from "../../models/DashboardModel/TuitionModel.js";
 
+
 export async function createTuition(req, res) {
   try {
-    const { location, ...restOfData } = req.body;
-
-    // Prepare the location data for the new schema
-    const newTuitionData = {
-      ...restOfData,
-      location: {
-        address: location.address,
-      },
-    };
-
-    // Only add the point if coordinates were provided
-    if (location.coordinates && location.coordinates.lat && location.coordinates.lng) {
-      newTuitionData.location.point = {
-        type: 'Point',
-        // GeoJSON format is [longitude, latitude]
-        coordinates: [location.coordinates.lng, location.coordinates.lat],
-      };
-    }
-
-    const tuition = new TuitionModel(newTuitionData);
+    const tuitionData = req.body;
+    const tuition = new TuitionModel(tuitionData);
     await tuition.save();
 
     res.status(201).json({
@@ -39,16 +22,17 @@ export async function createTuition(req, res) {
   }
 }
 
-export async function getTuitions(req, res) {
+
+export async function getTuition(req, res) {
   try {
-    const tuitions = await TuitionModel.find({});
+    const tuitionClasses = await TuitionModel.find({});
     res.status(200).json({
       success: true,
-      count: tuitions.length,
-      data: tuitions,
+      count: tuitionClasses.length,
+      data: tuitionClasses,
     });
   } catch (error) {
-    console.error("Error fetching tuitions:", error);
+    console.error("Error fetching tuition classes:", error);
     res.status(500).json({
       success: false,
       message: "Failed to fetch tuition details",
