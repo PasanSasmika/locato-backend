@@ -1,5 +1,5 @@
 import express from 'express';
-import { createTuition, getTuition } from '../../controllers/DashboardControllers/TuitionDashboard.js';
+import { createTuition, getTuition } from '../../controllers/DashboardControllers/tuitionDashboard.js';
 
 const tuitionRouter = express.Router();
 
