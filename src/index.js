@@ -19,6 +19,7 @@ import spaRouter from './routes/DashboardRoute/spaRoutes.js';
 import gymRouter from './routes/DashboardRoute/gymRoute.js';
 import bridalMakeupRouter from './routes/DashboardRoute/bridalMakeupRouter.js';
 import homeRepair from './routes/DashboardRoute/homerepair.js';
+import supermarketRouter from './routes/DashboardRoute/supermarketRoute.js';
 
 dotenv.config()
 
@@ -79,6 +80,9 @@ app.use("/api/spas", spaRouter);
 app.use("/api/gyms", gymRouter);
 app.use("/api/bridal-makeup", bridalMakeupRouter);
 app.use("/api/home-repair", homeRepair);
+app.use("/api/supermarkets", supermarketRouter);
+
+
 
 app.listen(
   5000,
