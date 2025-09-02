@@ -23,6 +23,7 @@ import supermarketRouter from './routes/DashboardRoute/supermarketRoute.js';
 import clothingRouter from './routes/DashboardRoute/clothingRoute.js';
 import hardwareRouter from './routes/DashboardRoute/hardwareRoute.js';
 import restaurantRouter from './routes/DashboardRoute/restaurantRoute.js';
+import electronicsRouter from './routes/DashboardRoute/electronicRoute.js';
 
 dotenv.config()
 
@@ -87,6 +88,7 @@ app.use("/api/supermarkets", supermarketRouter);
 app.use("/api/clothing", clothingRouter);
 app.use("/api/hardware", hardwareRouter);
 app.use("/api/restaurants", restaurantRouter);
+app.use("/api/electronics", electronicsRouter);
 
 
 
