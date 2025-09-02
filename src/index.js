@@ -22,6 +22,7 @@ import homeRepair from './routes/DashboardRoute/homerepair.js';
 import supermarketRouter from './routes/DashboardRoute/supermarketRoute.js';
 import clothingRouter from './routes/DashboardRoute/clothingRoute.js';
 import hardwareRouter from './routes/DashboardRoute/hardwareRoute.js';
+import restaurantRouter from './routes/DashboardRoute/restaurantRoute.js';
 
 dotenv.config()
 
@@ -85,6 +86,7 @@ app.use("/api/home-repair", homeRepair);
 app.use("/api/supermarkets", supermarketRouter);
 app.use("/api/clothing", clothingRouter);
 app.use("/api/hardware", hardwareRouter);
+app.use("/api/restaurants", restaurantRouter);
 
 
 
