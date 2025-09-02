@@ -8,7 +8,6 @@ import userRouter from './routes/userRoutes.js';
 import serviceReqRouter from './routes/serviceReqRoute.js';
 // import job from './lib/corn.js';
 import serviceCatRouter from './routes/serviceCatRoute.js';
-import tuitionRouter from './routes/DashboardRoute/tuitionRoute.js';
 import hospitalRouter from './routes/DashboardRoute/hospitalRoute.js';
 import labRouter from './routes/DashboardRoute/labRoute.js';
 import pharmacyRouter from './routes/DashboardRoute/pharmacyRoute.js';
@@ -24,6 +23,7 @@ import clothingRouter from './routes/DashboardRoute/clothingRoute.js';
 import hardwareRouter from './routes/DashboardRoute/hardwareRoute.js';
 import restaurantRouter from './routes/DashboardRoute/restaurantRoute.js';
 import electronicsRouter from './routes/DashboardRoute/electronicRoute.js';
+import tuitionRouter from './routes/DashboardRoute/tuitionsRoute.js';
 
 dotenv.config()
 

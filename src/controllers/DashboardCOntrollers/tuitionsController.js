@@ -1,4 +1,4 @@
-import TuitionModel from "../../models/DashboardModel/TuitionModel.js";
+import TuitionModel from "../../models/DashboardModel/tuitionsModel.js";
 
 
 export async function createTuition(req, res) {
