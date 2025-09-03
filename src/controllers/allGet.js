@@ -3,8 +3,8 @@ import LabModel from "../models/DashboardModel/LabModel.js";
 import PharmacyModel from "../models/DashboardModel/PharmacyModel.js";
 import RestaurantModel from "../models/DashboardModel/RestaurantModel.js";
 import SaloonModel from "../models/DashboardModel/SaloonModel.js";
-import SpaModel from "../models/DashboardModel/SpaModel.js";
-import SupermarketModel from "../models/DashboardModel/SupermarketModel.js";
+import SpaModel from "../models/DashboardModel/spaModel.js";
+import SupermarketModel from "../models/DashboardModel/supermarketModel.js";
 
 
 export async function getHospitals(req, res) {

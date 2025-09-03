@@ -1,4 +1,4 @@
-import SupermarketModel from "../models/DashboardModel/SupermarketModel.js";
+import SupermarketModel from "../models/DashboardModel/supermarketModel.js";
 
 
 export async function createSupermarket(req, res) {
