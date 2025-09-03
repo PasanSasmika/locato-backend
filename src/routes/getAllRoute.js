@@ -1,13 +1,12 @@
-// routes/allServicesRoute.js
+// routes/getAllRoute.js
 import express from 'express';
-import SupermarketModel from '../models/DashboardModel/supermarketModel.js';
-import SpaModel from '../models/DashboardModel/spaModel.js';
-import SaloonModel from '../models/DashboardModel/SaloonModel.js';
-import RestaurantModel from '../models/DashboardModel/RestaurantModel.js';
-import PharmacyModel from '../models/DashboardModel/PharmacyModel.js';
-import LabModel from '../models/DashboardModel/LabModel.js';
 import HospitalModel from '../models/DashboardModel/HospitalModel.js';
-
+import LabModel from '../models/DashboardModel/LabModel.js';
+import PharmacyModel from '../models/DashboardModel/PharmacyModel.js';
+import RestaurantModel from '../models/DashboardModel/RestaurantModel.js';
+import SaloonModel from '../models/DashboardModel/SaloonModel.js';
+import SpaModel from '../models/DashboardModel/SpaModel.js'; // Fixed case
+import SupermarketModel from '../models/DashboardModel/SupermarketModel.js'; // Fixed case
 
 const router = express.Router();
 
@@ -28,7 +27,7 @@ router.get('/', async (req, res) => {
     const requestedServices = req.query.services
       ? req.query.services.split(',')
       : Object.keys(serviceModels);
-    const validServices = requestedServices.filter(service => serviceModels[service]);
+    const validServices = requestedServices.filter(service => serviceModels[service] || console.warn(`Service ${service} not found`));
 
     if (validServices.length === 0) {
       return res.status(400).json({
@@ -37,11 +36,15 @@ router.get('/', async (req, res) => {
       });
     }
 
-    const queries = validServices.map(service =>
-      serviceModels[service].find({}).then(data => ({
-        [service]: { count: data.length, data },
-      }))
-    );
+    const queries = validServices.map(async service => {
+      try {
+        const data = await serviceModels[service].find({});
+        return { [service]: { count: data.length, data } };
+      } catch (error) {
+        console.warn(`Failed to fetch ${service}:`, error.message);
+        return { [service]: { count: 0, data: [] } };
+      }
+    });
 
     const results = await Promise.all(queries);
     const response = results.reduce((acc, curr) => ({ ...acc, ...curr }), {});
@@ -51,7 +54,7 @@ router.get('/', async (req, res) => {
       data: response,
     });
   } catch (error) {
-    console.error('Error fetching services:', error);
+    console.error('Error fetching services for:', requestedServices, error);
     res.status(500).json({
       success: false,
       message: 'Failed to fetch services',

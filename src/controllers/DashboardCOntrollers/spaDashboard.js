@@ -1,4 +1,4 @@
-import SpaModel from "../../models/DashboardModel/spaModel.js";
+import SpaModel from "../../models/DashboardModel/SpaModel.js";
 
 // @route   POST /api/spas
 export async function createSpa(req, res) {
