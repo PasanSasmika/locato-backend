@@ -4,8 +4,8 @@ import LabModel from '../models/DashboardModel/LabModel.js';
 import PharmacyModel from '../models/DashboardModel/PharmacyModel.js';
 import RestaurantModel from '../models/DashboardModel/RestaurantModel.js';
 import SaloonModel from '../models/DashboardModel/SaloonModel.js';
-import SpaModel from '../models/DashboardModel/spaModel.js';
-import SupermarketModel from '../models/DashboardModel/supermarketModel.js';
+import SpaModel from '../models/DashboardModel/spaModel.js'; // Fixed case
+import SupermarketModel from '../models/DashboardModel/supermarketModel.js'; // Fixed case
 import AyurvedaModel from '../models/DashboardModel/AyurvedaModel.js';
 import BridalMakeupModel from '../models/DashboardModel/BridalMakeupModel.js';
 import ClothingModel from '../models/DashboardModel/ClothingModel.js';
