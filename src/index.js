@@ -24,6 +24,7 @@ import hardwareRouter from './routes/DashboardRoute/hardwareRoute.js';
 import restaurantRouter from './routes/DashboardRoute/restaurantRoute.js';
 import electronicsRouter from './routes/DashboardRoute/electronicRoute.js';
 import tuitionRouter from './routes/DashboardRoute/tuitionsRoute.js';
+import router from './routes/getAllRoute.js';
 
 dotenv.config()
 
@@ -89,8 +90,7 @@ app.use("/api/clothing", clothingRouter);
 app.use("/api/hardware", hardwareRouter);
 app.use("/api/restaurants", restaurantRouter);
 app.use("/api/electronics", electronicsRouter);
-
-
+app.use("/api/all-services", router); 
 
 app.listen(
   5000,
