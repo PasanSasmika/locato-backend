@@ -6,14 +6,15 @@ import RestaurantModel from '../models/DashboardModel/RestaurantModel.js';
 import SaloonModel from '../models/DashboardModel/SaloonModel.js';
 import SpaModel from '../models/DashboardModel/spaModel.js'; // Fixed case
 import SupermarketModel from '../models/DashboardModel/supermarketModel.js'; // Fixed case
-import AyurvedaModel from '../models/DashboardModel/AyurvedaModel.js';
-import BridalMakeupModel from '../models/DashboardModel/BridalMakeupModel.js';
-import ClothingModel from '../models/DashboardModel/ClothingModel.js';
-import DoctorModel from '../models/DashboardModel/DoctorModel.js';
-import ElectronicsModel from '../models/DashboardModel/ElectronicsModel.js';
-import GymModel from '../models/DashboardModel/GymModel.js';
-import HardwareModel from '../models/DashboardModel/HardwareModel.js';
 import HomeRepairModel from '../models/DashboardModel/HomeRepairModel.js';
+import HardwareModel from '../models/DashboardModel/HardwareModel.js';
+import GymModel from '../models/DashboardModel/GymModel.js';
+import ElectronicsModel from '../models/DashboardModel/ElectronicModel.js';
+import DoctorModel from '../models/DashboardModel/DoctorModel.js';
+import ClothingModel from '../models/DashboardModel/ClothingModel.js';
+import BridalMakeupModel from '../models/DashboardModel/BridalandMakeupModel.js';
+import AyurvedaModel from '../models/DashboardModel/AyurwedhaModel.js';
+
 
 const router = express.Router();
 
