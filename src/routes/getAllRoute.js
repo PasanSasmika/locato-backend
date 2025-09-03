@@ -7,6 +7,14 @@ import RestaurantModel from '../models/DashboardModel/RestaurantModel.js';
 import SaloonModel from '../models/DashboardModel/SaloonModel.js';
 import SpaModel from '../models/DashboardModel/spaModel.js';
 import SupermarketModel from '../models/DashboardModel/supermarketModel.js';
+import AyurvedaModel from '../models/DashboardModel/AyurwedhaModel.js';
+import BridalMakeupModel from '../models/DashboardModel/BridalandMakeupModel.js';
+import ClothingModel from '../models/DashboardModel/ClothingModel.js';
+import DoctorModel from '../models/DashboardModel/DoctorModel.js';
+import ElectronicsModel from '../models/DashboardModel/ElectronicModel.js';
+import GymModel from '../models/DashboardModel/GymModel.js';
+import HardwareModel from '../models/DashboardModel/HardwareModel.js';
+import HomeRepairModel from '../models/DashboardModel/HomeRepairModel.js';
 
 
 const router = express.Router();
@@ -19,6 +27,14 @@ const serviceModels = {
   saloons: SaloonModel,
   spas: SpaModel,
   supermarkets: SupermarketModel,
+  ayurveda: AyurvedaModel,
+  bridalMakeups: BridalMakeupModel,
+  clothing: ClothingModel,
+  doctors: DoctorModel,
+  electronics: ElectronicsModel,
+  gyms: GymModel,
+  hardware: HardwareModel,
+  homeRepairs: HomeRepairModel,
 };
 
 // @desc    Get specified services or all services
