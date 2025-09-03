@@ -8,13 +8,18 @@ const ServiceCategorySchema = mongoose.Schema({
         required : true,
     },
 
-    subCategories :[
-         {
-            
-          type : String,
-          required : true
-       }
-    ],
+    subCategories: [
+        {
+            name: {
+                type: String,
+                required: true
+            },
+            description: {
+                type: String,
+                required: false
+            },
+        }
+    ]
     
 })
 
