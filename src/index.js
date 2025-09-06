@@ -25,6 +25,7 @@ import restaurantRouter from './routes/DashboardRoute/restaurantRoute.js';
 import electronicsRouter from './routes/DashboardRoute/electronicRoute.js';
 import tuitionRouter from './routes/DashboardRoute/tuitionsRoute.js';
 import router from './routes/getAllRoute.js';
+import Servicerouter from './routes/service.js';
 
 dotenv.config()
 
@@ -91,6 +92,7 @@ app.use("/api/hardware", hardwareRouter);
 app.use("/api/restaurants", restaurantRouter);
 app.use("/api/electronics", electronicsRouter);
 app.use("/api/all-services", router); 
+app.use('/api/search', Servicerouter);
 
 app.listen(
   5000,
