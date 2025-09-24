@@ -7,7 +7,16 @@ import AyurvedaModel from "../../models/DashboardModel/AyurwedhaModel.js";
 export async function createAyurvedaCentre(req, res) {
   try {
     const centreData = req.body;
-    const centre = new AyurvedaModel(centreData);
+    
+    // Ensure the coordinates are correctly formatted for the GeoJSON type
+    const centre = new AyurvedaModel({
+      ...centreData,
+      coordinates: {
+        type: 'Point',
+        coordinates: [centreData.coordinates.longitude, centreData.coordinates.latitude],
+      },
+    });
+    
     await centre.save();
 
     res.status(201).json({
@@ -24,6 +33,7 @@ export async function createAyurvedaCentre(req, res) {
     });
   }
 }
+
 
 // @desc    Get all Ayurveda centre listings
 // @route   GET /api/ayurveda

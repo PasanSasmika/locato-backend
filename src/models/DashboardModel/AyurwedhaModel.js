@@ -7,6 +7,10 @@ const AyurvedaSchema = new mongoose.Schema(
       required: [true, "Centre name is required."],
       trim: true,
     },
+    location: {
+      type: String,
+      required: [true, "Location is required."],
+    },
     serviceInfo: {
       type: String,
       trim: true,
@@ -20,6 +24,18 @@ const AyurvedaSchema = new mongoose.Schema(
       phone: { type: String, required: [true, "Contact number is required."] },
       email: { type: String },
       website: { type: String },
+    },
+    coordinates: {
+      type: {
+        type: String,
+        enum: ['Point'],
+        required: true,
+        default: 'Point'
+      },
+      coordinates: {
+        type: [Number],
+        required: true,
+      },
     },
     openingHours: {
       type: String,
