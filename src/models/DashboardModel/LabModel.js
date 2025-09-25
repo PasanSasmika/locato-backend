@@ -29,6 +29,18 @@ const LabSchema = new mongoose.Schema(
       type: String,
       required: [true, "Location is required."],
     },
+    coordinates: {
+      type: {
+        type: String,
+        enum: ['Point'],
+        required: true,
+        default: 'Point'
+      },
+      coordinates: {
+        type: [Number], // [longitude, latitude]
+        required: true,
+      },
+    },
     website: {
       type: String,
     },

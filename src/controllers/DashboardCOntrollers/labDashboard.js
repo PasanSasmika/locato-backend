@@ -6,7 +6,15 @@ export async function createLab(req, res) {
   try {
     const labData = req.body;
 
-    const lab = new LabModel(labData);
+    // Ensure the coordinates are correctly formatted for the GeoJSON type
+    const lab = new LabModel({
+      ...labData,
+      coordinates: {
+        type: 'Point',
+        coordinates: [labData.coordinates.longitude, labData.coordinates.latitude],
+      },
+    });
+
     await lab.save();
 
     res.status(201).json({
