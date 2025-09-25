@@ -1,6 +1,3 @@
-
-// @desc    Create a new hospital listing
-
 import HospitalModel from "../../models/DashboardModel/HospitalModel.js";
 
 // @route   POST /api/hospitals
@@ -8,9 +5,15 @@ export async function createHospital(req, res) {
   try {
     const hospitalData = req.body;
 
-    // Create a new hospital instance with the received data
-    const hospital = new HospitalModel(hospitalData);
-    
+    // Ensure the coordinates are correctly formatted for the GeoJSON type
+    const hospital = new HospitalModel({
+      ...hospitalData,
+      coordinates: {
+        type: 'Point',
+        coordinates: [hospitalData.coordinates.longitude, hospitalData.coordinates.latitude],
+      },
+    });
+
     // Save the new hospital to the database
     await hospital.save();
 

@@ -10,7 +10,7 @@ const HospitalSchema = new mongoose.Schema(
     hospitalType: {
       type: String,
       required: [true, "Hospital type is required."],
-      enum: ["Government", "Private"], // Ensures only these two values are accepted
+      enum: ["Government", "Private"],
     },
     departments: [
       {
@@ -31,6 +31,18 @@ const HospitalSchema = new mongoose.Schema(
       type: String,
       required: [true, "Location is required."],
     },
+    coordinates: {
+      type: {
+        type: String,
+        enum: ['Point'],
+        required: true,
+        default: 'Point'
+      },
+      coordinates: {
+        type: [Number],
+        required: true,
+      },
+    },
     visitingHours: {
       type: String,
     },
@@ -42,7 +54,7 @@ const HospitalSchema = new mongoose.Schema(
     },
     images: [
       {
-        type: String, // To store base64 image strings
+        type: String,
       },
     ],
     nextUpdateDate: {
