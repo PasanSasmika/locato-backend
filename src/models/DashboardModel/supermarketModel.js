@@ -21,21 +21,21 @@ const SupermarketSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    paymentMethods: [{ type: String, trim: true }], // e.g., ['Cash', 'Credit Card', 'Mobile Payments']
-    areasCovered: [{ type: String, trim: true }], // e.g., ['Colombo', 'Kandy']
+    paymentMethods: [{ type: String, trim: true }],
+    areasCovered: [{ type: String, trim: true }],
     rating: {
       type: Number,
       min: 0,
       max: 5,
       default: 0,
     },
-    categoriesAvailable: [{ type: String, trim: true }], // e.g., ['Fresh Produce', 'Dairy', 'Bakery']
+    categoriesAvailable: [{ type: String, trim: true }],
     parkingAvailable: {
       type: Boolean,
       default: false,
     },
     offersAvailable: {
-      type: String, // Multi-line text for current offers
+      type: String,
       trim: true,
     },
     is24HourOpen: {
@@ -43,7 +43,7 @@ const SupermarketSchema = new mongoose.Schema(
       default: false,
     },
     membershipDiscount: {
-      type: String, // e.g., "10% off for members"
+      type: String,
       trim: true,
     },
     contactInfo: {
@@ -63,13 +63,27 @@ const SupermarketSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
-    images: [{ type: String }], // Base64 or URLs for store photos
+    // --- ADDED ---
+    coordinates: {
+      type: {
+        type: String,
+        enum: ['Point'],
+        required: true,
+        default: 'Point'
+      },
+      coordinates: {
+        type: [Number], // [longitude, latitude]
+        required: true,
+      },
+    },
+    // --- END ADDED ---
+    images: [{ type: String }],
     storeHours: {
-      type: String, // e.g., "Mon-Sun 8AM-10PM"
+      type: String,
       trim: true,
     },
     loyaltyProgram: {
-      type: String, // Details of loyalty program
+      type: String,
       trim: true,
     },
     onlineOrdering: {
