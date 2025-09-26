@@ -5,7 +5,17 @@ import DoctorModel from "../../models/DashboardModel/DoctorModel.js";
 export async function createDoctor(req, res) {
   try {
     const doctorData = req.body;
-    const doctor = new DoctorModel(doctorData);
+
+    // --- MODIFIED ---
+    const doctor = new DoctorModel({
+        ...doctorData,
+        coordinates: {
+            type: 'Point',
+            coordinates: [doctorData.coordinates.longitude, doctorData.coordinates.latitude],
+        },
+    });
+    // --- END MODIFIED ---
+
     await doctor.save();
 
     res.status(201).json({
