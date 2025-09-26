@@ -1,10 +1,19 @@
 import SupermarketModel from "../models/DashboardModel/supermarketModel.js";
 
-
 export async function createSupermarket(req, res) {
   try {
     const supermarketData = req.body;
-    const supermarket = new SupermarketModel(supermarketData);
+    
+    // --- MODIFIED ---
+    const supermarket = new SupermarketModel({
+        ...supermarketData,
+        coordinates: {
+            type: 'Point',
+            coordinates: [supermarketData.coordinates.longitude, supermarketData.coordinates.latitude],
+        },
+    });
+    // --- END MODIFIED ---
+
     await supermarket.save();
 
     res.status(201).json({
@@ -21,8 +30,6 @@ export async function createSupermarket(req, res) {
     });
   }
 }
-
-
 
 export async function getSupermarkets(req, res) {
   try {
