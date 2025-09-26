@@ -14,7 +14,7 @@ const SaloonSchema = new mongoose.Schema(
     },
     services: [{ type: String, trim: true }],
     priceList: {
-      type: String, // For a multi-line text block of services and prices
+      type: String,
     },
     workingDays: [{ type: String, trim: true }],
     appointmentNeeded: {
@@ -27,7 +27,7 @@ const SaloonSchema = new mongoose.Schema(
       required: true,
       default: false,
     },
-    serviceModes: [{ type: String }], // e.g., ['At Saloon', 'Home Visits']
+    serviceModes: [{ type: String }],
     contactInfo: {
       phone: { type: String, required: true },
       socialMedia: { type: String },
@@ -36,6 +36,20 @@ const SaloonSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    // --- ADDED ---
+    coordinates: {
+      type: {
+        type: String,
+        enum: ['Point'],
+        required: true,
+        default: 'Point'
+      },
+      coordinates: {
+        type: [Number], // [longitude, latitude]
+        required: true,
+      },
+    },
+    // --- END ADDED ---
     languages: [{ type: String, trim: true }],
     rating: {
       type: Number,

@@ -5,7 +5,17 @@ import SaloonModel from "../../models/DashboardModel/SaloonModel.js";
 export async function createSaloon(req, res) {
   try {
     const saloonData = req.body;
-    const saloon = new SaloonModel(saloonData);
+
+    // --- MODIFIED ---
+    const saloon = new SaloonModel({
+      ...saloonData,
+      coordinates: {
+        type: 'Point',
+        coordinates: [saloonData.coordinates.longitude, saloonData.coordinates.latitude],
+      },
+    });
+    // --- END MODIFIED ---
+
     await saloon.save();
 
     res.status(201).json({
