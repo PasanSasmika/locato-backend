@@ -6,15 +6,13 @@ export async function createDoctor(req, res) {
   try {
     const doctorData = req.body;
 
-    // --- MODIFIED ---
     const doctor = new DoctorModel({
-        ...doctorData,
-        coordinates: {
-            type: 'Point',
-            coordinates: [doctorData.coordinates.longitude, doctorData.coordinates.latitude],
-        },
+      ...doctorData,
+      coordinates: {
+        type: 'Point',
+        coordinates: [doctorData.coordinates.longitude, doctorData.coordinates.latitude],
+      },
     });
-    // --- END MODIFIED ---
 
     await doctor.save();
 
@@ -25,9 +23,25 @@ export async function createDoctor(req, res) {
     });
   } catch (error) {
     console.error("Error saving doctor:", error);
+
+    // --- NEW & IMPROVED ERROR HANDLING ---
+    // Check if it's a Mongoose validation error
+    if (error.name === 'ValidationError') {
+      // Extract the error messages into an array
+      const messages = Object.values(error.errors).map(val => val.message);
+      
+      // Respond with a 400 status and the specific error messages
+      return res.status(400).json({
+        success: false,
+        message: "Validation failed. Please check your input.",
+        errors: messages,
+      });
+    }
+
+    // For any other server-side errors, respond with a 500
     res.status(500).json({
       success: false,
-      message: "Failed to add doctor details",
+      message: "An unexpected error occurred on the server.",
       error: error.message,
     });
   }
