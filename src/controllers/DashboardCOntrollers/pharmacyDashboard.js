@@ -6,7 +6,17 @@ export async function createPharmacy(req, res) {
   try {
     const pharmacyData = req.body;
 
-    const pharmacy = new PharmacyModel(pharmacyData);
+    // --- MODIFIED ---
+    const pharmacy = new PharmacyModel({
+      ...pharmacyData,
+      coordinates: {
+        type: 'Point',
+        // Note: GeoJSON stores as [longitude, latitude]
+        coordinates: [pharmacyData.coordinates.longitude, pharmacyData.coordinates.latitude],
+      },
+    });
+    // --- END MODIFIED ---
+
     await pharmacy.save();
 
     res.status(201).json({

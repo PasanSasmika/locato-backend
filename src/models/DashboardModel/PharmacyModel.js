@@ -28,6 +28,20 @@ const PharmacySchema = new mongoose.Schema(
       type: String,
       required: [true, "Location is required."],
     },
+    // --- ADDED ---
+    coordinates: {
+      type: {
+        type: String,
+        enum: ['Point'],
+        required: true,
+        default: 'Point'
+      },
+      coordinates: {
+        type: [Number], // [longitude, latitude]
+        required: true,
+      },
+    },
+    // --- END ADDED ---
     rating: {
       type: Number,
       min: 0,
@@ -47,7 +61,7 @@ const PharmacySchema = new mongoose.Schema(
     },
     images: [
       {
-        type: String, // To store base64 image strings
+        type: String,
       },
     ],
   },
