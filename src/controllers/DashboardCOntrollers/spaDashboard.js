@@ -4,7 +4,17 @@ import SpaModel from "../../models/DashboardModel/spaModel.js";
 export async function createSpa(req, res) {
   try {
     const spaData = req.body;
-    const spa = new SpaModel(spaData);
+    
+    // --- MODIFIED ---
+    const spa = new SpaModel({
+        ...spaData,
+        coordinates: {
+            type: 'Point',
+            coordinates: [spaData.coordinates.longitude, spaData.coordinates.latitude],
+        },
+    });
+    // --- END MODIFIED ---
+
     await spa.save();
 
     res.status(201).json({
@@ -22,6 +32,7 @@ export async function createSpa(req, res) {
   }
 }
 
+// @route   GET /api/spas
 export async function getSpas(req, res) {
   try {
     const spas = await SpaModel.find({});

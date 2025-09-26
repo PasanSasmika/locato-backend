@@ -38,7 +38,24 @@ const SpaSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    locations: [{ type: String, trim: true, required: true }],
+    // --- MODIFIED ---
+    location: {
+      type: String,
+      required: [true, "Location is required."],
+    },
+    coordinates: {
+      type: {
+        type: String,
+        enum: ['Point'],
+        required: true,
+        default: 'Point'
+      },
+      coordinates: {
+        type: [Number], // [longitude, latitude]
+        required: true,
+      },
+    },
+    // --- END MODIFIED ---
     rating: {
       type: Number,
       min: 0,
